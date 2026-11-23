@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Model weights and exports (large binaries — never commit; download or train instead)
+*.pt
+*.onnx
+*.mlpackage/
+*.mlmodel
+weights/
+
+# Data and outputs
+data/raw/
+data/datasets/
+data/videos/
+runs/
+outputs/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,78 @@
+{
+  "tag": "baseline",
+  "created": "2026-11-23T04:11:26+00:00",
+  "environment": {
+    "machine": "arm64",
+    "processor": "arm",
+    "macos": "27.2.1",
+    "python": "3.12.16",
+    "torch": "2.15.0",
+    "ultralytics": "8.4.216"
+  },
+  "results": [
+    {
+      "weights": "weights/yolo11n.pt",
+      "device": "cpu",
+      "image_size": 640,
+      "runs": 300,
+      "mean_ms": 38.65,
+      "p50_ms": 37.35,
+      "p95_ms": 47.91,
+      "p99_ms": 50.15,
+      "max_ms": 55.24,
+      "fps": 25.9,
+      "preprocess_ms": 0.72,
+      "inference_ms": 37.4,
+      "postprocess_ms": 0.53,
+      "detections_per_frame": 5.0
+    },
+    {
+      "weights": "weights/yolo11n.pt",
+      "device": "mps",
+      "image_size": 640,
+      "runs": 300,
+      "mean_ms": 13.81,
+      "p50_ms": 13.24,
+      "p95_ms": 14.2,
+      "p99_ms": 14.71,
+      "max_ms": 172.33,
+      "fps": 72.4,
+      "preprocess_ms": 0.53,
+      "inference_ms": 5.84,
+      "postprocess_ms": 7.44,
+      "detections_per_frame": 5.0
+    },
+    {
+      "weights": "weights/yolo26n.pt",
+      "device": "cpu",
+      "image_size": 640,
+      "runs": 300,
+      "mean_ms": 35.71,
+      "p50_ms": 34.67,
+      "p95_ms": 42.3,
+      "p99_ms": 48.11,
+      "max_ms": 51.82,
+      "fps": 28.0,
+      "preprocess_ms": 0.67,
+      "inference_ms": 34.55,
+      "postprocess_ms": 0.49,
+      "detections_per_frame": 5.0
+    },
+    {
+      "weights": "weights/yolo26n.pt",
+      "device": "mps",
+      "image_size": 640,
+      "runs": 300,
+      "mean_ms": 15.93,
+      "p50_ms": 14.15,
+      "p95_ms": 26.56,
+      "p99_ms": 35.38,
+      "max_ms": 61.29,
+      "fps": 62.8,
+      "preprocess_ms": 0.62,
+      "inference_ms": 7.0,
+      "postprocess_ms": 8.32,
+      "detections_per_frame": 5.0
+    }
+  ]
+}

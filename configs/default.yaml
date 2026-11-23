@@ -1,0 +1,19 @@
+# PPE Guard - default runtime configuration.
+# Every key is optional; missing keys use the defaults in src/ppe_guard/config.py.
+
+model:
+  weights: weights/yolo26n.pt  # Day 1: pretrained COCO model. Day 3+: our fine-tuned PPE model.
+  device: auto             # auto -> mps on Apple Silicon, else cpu
+  image_size: 640
+  conf_threshold: 0.35
+  iou_threshold: 0.5
+  classes: [0]             # COCO class 0 = person (only class relevant until PPE fine-tune)
+  half: false
+
+source:
+  uri: "0"                 # webcam; or a path like data/videos/site.mp4, or rtsp://...
+  max_frames: null
+
+output:
+  display: true
+  save_path: null
