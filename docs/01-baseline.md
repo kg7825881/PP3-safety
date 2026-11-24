@@ -127,6 +127,10 @@ pipeline. Accuracy is judged on real footage and a held-out dataset split (Day 3
 
 ## 6. Interview questions this phase prepares you for
 
+**Q: What is YOLO11n and YOLO26n?**
+**YOLO11n** (YOLOv11 Nano) is the smallest, fastest model in Ultralytics. 
+**YOLO26n** is the lightweight "nano" variant of Ultralytics' YOLO26 computer vision model family, built for fast, low-power real-time inference on edge, mobile, and embedded devices. It supports end-to-end inference without non-maximum suppression (NMS) and omits Distribution Focal Loss (DFL) for simpler deployment
+
 **Q: Why YOLO and not Faster R-CNN?**
 YOLO is one-stage: one forward pass predicts all boxes, so it's real-time. Faster R-CNN first
 proposes regions, then classifies each one: more accurate on tiny objects, but several times
