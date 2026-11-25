@@ -95,14 +95,14 @@ MacBook Air M3 (16 GB, fanless), 640×640, 300 timed runs, pretrained COCO weigh
 | YOLO26n | CPU | 35.71 | 34.67 | 42.30 | 48.11 | 51.82 | 28.0 |
 | YOLO26n | MPS | 15.93 | 14.15 | 26.56 | 35.38 | 61.29 | 62.8 |
 
-End-to-end on a 960×540 video (read + detect + draw + encode), YOLO26n on MPS:
+End-to-end on a synthetic 960×540 test video (read + detect + draw + encode), YOLO26n on MPS:
 **model 13.9 ms, end-to-end 20.3 ms ≈ 49 FPS**.
 
 ### How to read these numbers
 1. **GPU ≈ 2.5× faster than CPU.** Expected for convolution-heavy networks.
 2. **YOLO11n vs YOLO26n is within noise here.** An earlier identical run measured YOLO26n/MPS
-   at 14.1 ms mean / 14.1 ms p95. The MacBook Air has **no fan**: under sustained load the chip
-   heats and macOS throttles it, so results drift between runs. Conclusion: don't pick a model
+   at 14.1 ms mean / 14.1 ms p95. The cause was not measured; thermal throttling (the Air has
+   **no fan**) and background load are the likely suspects. Conclusion: don't pick a model
    on a 2 ms PyTorch difference. Compare after export, over repeated runs.
 3. **Spikes (YOLO11n/MPS max = 172 ms).** One frame out of 300. Typical causes: a background
    process, a memory allocation, a GPU shader recompile. This is exactly why we report p99
@@ -164,7 +164,7 @@ To time stages precisely on a GPU you must synchronize (`torch.mps.synchronize()
 boundary. The total is what users experience, and it's correct.
 
 **Q: Why are results different between runs?**
-Thermal throttling on a fanless laptop, background processes, and memory state. Mitigations:
+Likely thermal throttling on a fanless laptop or background processes; I did not isolate the cause. Mitigations:
 warm-up, many runs, percentiles, repeat and report variance, and avoid deciding on
 differences smaller than the noise.
 

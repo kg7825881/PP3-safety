@@ -56,7 +56,8 @@ PyTorch with CoreML touches only the detector.
 | Metrics | `metrics.py` | Rolling p50/p95 latency and FPS | Day 1 ✅ |
 | Benchmark | `benchmark.py` | Reproducible model × device latency study | Day 1 ✅ |
 | Pipeline | `pipeline.py` | The real-time loop | Day 1 ✅ (synchronous) |
-| Training | `train.py` | Fine-tune on PPE dataset, evaluate | Day 3–4 _(planned)_ |
+| Data | `dataset.py` | Audit labels, leak-resistant splits | Day 3–4 ✅ |
+| Training | `train.py`, `evaluate.py` | Fine-tune, per-class metrics | Day 3–4 ✅ |
 | Export | `export.py` | CoreML / ONNX, FP16 / INT8 | Day 5–6 _(planned)_ |
 | Tracker | `tracking.py` | ByteTrack: persistent IDs | Day 7–8 _(planned)_ |
 | Rules | `rules.py` | PPE-to-person association, zones, timers | Day 7–8 _(planned)_ |
