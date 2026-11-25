@@ -73,6 +73,8 @@ PyTorch with CoreML touches only the detector.
   but much slower.
 - **Nano** variant: helmets/vests are mid-sized objects at CCTV distances, and the edge
   latency budget is tight. We will measure whether "small" is worth the extra cost.
+- **960 px input**: most missed violations were small objects. On validation it raised mAP50 from
+  0.831 (640 px) to 0.875, still above 25 FPS on MPS (`docs/02-training.md` section 5).
 - **YOLO26 vs YOLO11**: YOLO26 is designed end-to-end **without NMS** (Non-Maximum
   Suppression) post-processing, which simplifies export to CoreML/ONNX and removes a CPU-side
   step. In PyTorch on the M3 the two are within noise (see `benchmarks/baseline.md`); the

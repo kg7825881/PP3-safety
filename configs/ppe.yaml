@@ -2,10 +2,10 @@
 # Every key is optional; missing keys use the defaults in src/ppe_guard/config.py.
 
 model:
-  weights: weights/ppe_yolo26n.pt  # fine-tuned; see docs/02-training.md
+  weights: weights/ppe_yolo26n_960.pt  # fine-tuned; see docs/02-training.md
   device: auto             # auto -> mps on Apple Silicon, else cpu
-  image_size: 640
-  conf_threshold: 0.25     # chosen on validation
+  image_size: 960          # the size it was trained at
+  conf_threshold: 0.25     # favors recall; see docs/02-training.md section 5
   iou_threshold: 0.5
   classes: null            # all five PPE classes
   half: false
