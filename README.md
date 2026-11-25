@@ -6,7 +6,7 @@ PPE Guard watches a video feed (CCTV, RTSP stream, webcam or file), detects work
 their protective equipment, tracks each person across frames, and raises an alert when
 someone is in a hazard zone without the required PPE for longer than a grace period.
 
-> Status: **Day 1 of 12 — baseline detection pipeline + benchmarks.** See [Roadmap](#roadmap).
+> Status: **Days 3–4 complete — fine-tuned PPE detector with held-out evaluation.** See [Roadmap](#roadmap).
 
 ---
 
@@ -46,7 +46,22 @@ uv pip install -e ".[dev]"
 
 Official model weights download automatically into `weights/` on first use.
 
-## Current results (Day 1 baseline, MacBook Air M3, 16 GB)
+## PPE model results (YOLO26n, 640 px, held-out test set of 120 images)
+
+| Class | Precision | Recall | mAP50 |
+|---|---|---|---|
+| all | 0.927 | 0.829 | 0.888 |
+| person | 0.978 | 0.955 | 0.975 |
+| helmet | 0.954 | 0.821 | 0.926 |
+| vest | 0.983 | 0.919 | 0.969 |
+| no_helmet | 0.808 | 0.632 | 0.716 |
+| no_vest | 0.911 | 0.819 | 0.855 |
+
+Validation mAP50 is 0.831. Known limits: small violations are often missed, the test set is
+small, and the dataset mixes real and generated images, so real-site accuracy is unproven.
+Details: [docs/02-training.md](docs/02-training.md).
+
+## Latency results (Day 1 baseline, MacBook Air M3, 16 GB)
 
 Pretrained COCO models, 640×640 input, 300 timed runs after warm-up:
 
@@ -66,6 +81,7 @@ Full table and methodology: [benchmarks/baseline.md](benchmarks/baseline.md) and
 
 - [Architecture](docs/ARCHITECTURE.md) — the whole system, data flow, and design decisions
 - [Day 1 — Baseline pipeline](docs/01-baseline.md) — code walkthrough, benchmark method, interview Q&A
+- [Days 3–4 — Training and evaluation](docs/02-training.md) — data audit, results, error analysis, interview Q&A
 
 ## Project layout
 
@@ -82,8 +98,14 @@ weights/ data/ outputs/   large/local files, git-ignored
 ## Roadmap
 
 - [x] **Day 1–2** Repo, architecture, baseline detector, benchmark harness
-- [ ] **Day 3–4** PPE dataset, fine-tune on MPS, evaluation (mAP, per-class recall)
+- [x] **Day 3–4** PPE dataset, fine-tune on MPS, evaluation (mAP, per-class recall)
 - [ ] **Day 5–6** CoreML (Neural Engine) + ONNX export, FP16/INT8, benchmark every backend
 - [ ] **Day 7–8** Multi-object tracking (ByteTrack), zones, compliance rules, alerts
 - [ ] **Day 9–10** FastAPI service, WebSocket live stream, dashboard
 - [ ] **Day 11–12** Docker, GitHub Actions CI, Prometheus metrics, final docs
+
+## Dataset credit
+
+[Ultralytics Construction-PPE](https://docs.ultralytics.com/datasets/detect/construction-ppe),
+Ultralytics team, November 2026, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Changes: reduced to 5 of 12 classes, re-split, 2 near-duplicate images dropped.
