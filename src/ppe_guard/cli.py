@@ -1,4 +1,4 @@
-"""Command-line entry point: `ppe-guard run ...` and `ppe-guard benchmark ...`."""
+"""PPE Guard command line: run, benchmark, prepare-data, train, evaluate."""
 
 from __future__ import annotations
 
@@ -45,6 +45,43 @@ def _cmd_benchmark(args: argparse.Namespace) -> None:
     print(f"Saved benchmarks/{args.tag}.json and .md")
 
 
+def _cmd_prepare(args: argparse.Namespace) -> None:
+    from pathlib import Path
+
+    import yaml
+
+    from ppe_guard.dataset import prepare
+
+    names = yaml.safe_load(Path(args.source_yaml).read_text())["names"]
+    report = prepare(
+        Path(args.source), names, Path(args.out), Path(args.report), args.test_count, args.seed
+    )
+    for key, value in report.items():
+        if key != "manifest":
+            print(f"{key}: {value}")
+
+
+def _cmd_train(args: argparse.Namespace) -> None:
+    from ppe_guard.train import train
+
+    best = train(
+        args.data, args.weights, args.name, args.epochs, args.patience, args.batch,
+        args.imgsz, args.device, args.seed, args.fraction,
+    )
+    print(f"Best weights: {best}")
+
+
+def _cmd_evaluate(args: argparse.Namespace) -> None:
+    import json
+
+    from ppe_guard.evaluate import evaluate
+
+    report = evaluate(
+        args.weights, args.data, args.split, args.device, args.imgsz, tag=args.tag
+    )
+    print(json.dumps(report, indent=2))
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="ppe-guard", description=__doc__)
     p.add_argument("-v", "--verbose", action="store_true")
@@ -70,6 +107,37 @@ def build_parser() -> argparse.ArgumentParser:
     b.add_argument("--imgsz", type=int, default=640)
     b.add_argument("--tag", default="baseline", help="Output file name in benchmarks/")
     b.set_defaults(func=_cmd_benchmark)
+
+    d = sub.add_parser("prepare-data", help="Audit the PPE dataset and build splits")
+    d.add_argument("--source", default="data/datasets/construction-ppe-v1/construction-ppe")
+    d.add_argument("--source-yaml", default="configs/construction-ppe.yaml")
+    d.add_argument("--out", default="data/datasets/ppe5")
+    d.add_argument("--report", default="benchmarks/dataset_audit.json")
+    d.add_argument("--test-count", type=int, default=120)
+    d.add_argument("--seed", type=int, default=42)
+    d.set_defaults(func=_cmd_prepare)
+
+    t = sub.add_parser("train", help="Fine-tune on the prepared dataset")
+    t.add_argument("--data", default="data/datasets/ppe5/data.yaml")
+    t.add_argument("-w", "--weights", default="weights/yolo26n.pt")
+    t.add_argument("--name", default="ppe_yolo26n")
+    t.add_argument("--epochs", type=int, default=100)
+    t.add_argument("--patience", type=int, default=20)
+    t.add_argument("--batch", type=int, default=16)
+    t.add_argument("--imgsz", type=int, default=640)
+    t.add_argument("-d", "--device", choices=["auto", "cpu", "mps"], default="auto")
+    t.add_argument("--seed", type=int, default=0)
+    t.add_argument("--fraction", type=float, default=1.0, help="Share of train data to use")
+    t.set_defaults(func=_cmd_train)
+
+    e = sub.add_parser("evaluate", help="Per-class metrics on a dataset split")
+    e.add_argument("-w", "--weights", default="weights/ppe_yolo26n.pt")
+    e.add_argument("--data", default="data/datasets/ppe5/data.yaml")
+    e.add_argument("--split", choices=["train", "val", "test"], default="test")
+    e.add_argument("-d", "--device", choices=["auto", "cpu", "mps"], default="auto")
+    e.add_argument("--imgsz", type=int, default=640)
+    e.add_argument("--tag", default="eval_test")
+    e.set_defaults(func=_cmd_evaluate)
     return p
 
 
