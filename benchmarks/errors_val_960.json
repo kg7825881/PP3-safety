@@ -1,0 +1,144 @@
+{
+  "weights": "weights/ppe_yolo26n.pt",
+  "split": "val",
+  "imgsz": 960,
+  "thresholds": {
+    "person": {
+      "0.1": {
+        "recall": 0.946,
+        "precision": 0.855
+      },
+      "0.15": {
+        "recall": 0.944,
+        "precision": 0.89
+      },
+      "0.25": {
+        "recall": 0.936,
+        "precision": 0.926
+      },
+      "0.35": {
+        "recall": 0.927,
+        "precision": 0.953
+      },
+      "0.5": {
+        "recall": 0.917,
+        "precision": 0.976
+      }
+    },
+    "helmet": {
+      "0.1": {
+        "recall": 0.895,
+        "precision": 0.843
+      },
+      "0.15": {
+        "recall": 0.891,
+        "precision": 0.865
+      },
+      "0.25": {
+        "recall": 0.891,
+        "precision": 0.916
+      },
+      "0.35": {
+        "recall": 0.878,
+        "precision": 0.935
+      },
+      "0.5": {
+        "recall": 0.847,
+        "precision": 0.958
+      }
+    },
+    "vest": {
+      "0.1": {
+        "recall": 0.938,
+        "precision": 0.891
+      },
+      "0.15": {
+        "recall": 0.938,
+        "precision": 0.909
+      },
+      "0.25": {
+        "recall": 0.935,
+        "precision": 0.941
+      },
+      "0.35": {
+        "recall": 0.935,
+        "precision": 0.964
+      },
+      "0.5": {
+        "recall": 0.921,
+        "precision": 0.975
+      }
+    },
+    "no_helmet": {
+      "0.1": {
+        "recall": 0.726,
+        "precision": 0.739
+      },
+      "0.15": {
+        "recall": 0.709,
+        "precision": 0.784
+      },
+      "0.25": {
+        "recall": 0.693,
+        "precision": 0.827
+      },
+      "0.35": {
+        "recall": 0.665,
+        "precision": 0.881
+      },
+      "0.5": {
+        "recall": 0.603,
+        "precision": 0.947
+      }
+    },
+    "no_vest": {
+      "0.1": {
+        "recall": 0.731,
+        "precision": 0.826
+      },
+      "0.15": {
+        "recall": 0.731,
+        "precision": 0.833
+      },
+      "0.25": {
+        "recall": 0.715,
+        "precision": 0.877
+      },
+      "0.35": {
+        "recall": 0.7,
+        "precision": 0.929
+      },
+      "0.5": {
+        "recall": 0.638,
+        "precision": 0.954
+      }
+    }
+  },
+  "recall_by_size_at_0.25": {
+    "helmet": {
+      "16-32px": "29/32",
+      "<16px": "92/121",
+      ">=32px": "141/141"
+    },
+    "no_helmet": {
+      "16-32px": "14/23",
+      "<16px": "39/81",
+      ">=32px": "71/75"
+    },
+    "no_vest": {
+      "16-32px": "10/18",
+      "<16px": "6/32",
+      ">=32px": "77/80"
+    },
+    "person": {
+      "16-32px": "67/75",
+      "<16px": "32/46",
+      ">=32px": "351/360"
+    },
+    "vest": {
+      "16-32px": "77/80",
+      "<16px": "45/61",
+      ">=32px": "196/199"
+    }
+  }
+}

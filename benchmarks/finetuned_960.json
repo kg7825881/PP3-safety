@@ -1,0 +1,30 @@
+{
+  "tag": "finetuned_960",
+  "created": "2026-11-24T19:25:22+00:00",
+  "environment": {
+    "machine": "arm64",
+    "processor": "arm",
+    "macos": "27.2.1",
+    "python": "3.12.16",
+    "torch": "2.15.0",
+    "ultralytics": "8.4.216"
+  },
+  "results": [
+    {
+      "weights": "weights/ppe_yolo26n.pt",
+      "device": "mps",
+      "image_size": 960,
+      "runs": 300,
+      "mean_ms": 23.58,
+      "p50_ms": 23.07,
+      "p95_ms": 24.64,
+      "p99_ms": 25.6,
+      "max_ms": 220.24,
+      "fps": 42.4,
+      "preprocess_ms": 1.13,
+      "inference_ms": 7.38,
+      "postprocess_ms": 15.08,
+      "detections_per_frame": 8.0
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "tag": "finetuned",
+  "created": "2026-11-24T19:23:37+00:00",
+  "environment": {
+    "machine": "arm64",
+    "processor": "arm",
+    "macos": "27.2.1",
+    "python": "3.12.16",
+    "torch": "2.15.0",
+    "ultralytics": "8.4.216"
+  },
+  "results": [
+    {
+      "weights": "weights/yolo26n.pt",
+      "device": "mps",
+      "image_size": 640,
+      "runs": 300,
+      "mean_ms": 14.0,
+      "p50_ms": 13.49,
+      "p95_ms": 13.71,
+      "p99_ms": 13.91,
+      "max_ms": 184.28,
+      "fps": 71.4,
+      "preprocess_ms": 0.48,
+      "inference_ms": 6.45,
+      "postprocess_ms": 7.07,
+      "detections_per_frame": 5.0
+    },
+    {
+      "weights": "weights/ppe_yolo26n.pt",
+      "device": "mps",
+      "image_size": 640,
+      "runs": 300,
+      "mean_ms": 13.4,
+      "p50_ms": 13.36,
+      "p95_ms": 13.74,
+      "p99_ms": 13.93,
+      "max_ms": 29.6,
+      "fps": 74.6,
+      "preprocess_ms": 0.47,
+      "inference_ms": 5.92,
+      "postprocess_ms": 7.0,
+      "detections_per_frame": 11.0
+    }
+  ]
+}
