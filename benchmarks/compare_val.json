@@ -1,0 +1,69 @@
+{
+  "a": [
+    "weights/ppe_yolo26n.pt",
+    "640"
+  ],
+  "b": [
+    "weights/ppe_yolo26n_960.pt",
+    "960"
+  ],
+  "split": "val",
+  "precision": 0.9,
+  "classes": {
+    "person": {
+      "recall_a": 0.921,
+      "recall_b": 0.952,
+      "gain": 0.031,
+      "gain_ci95": [
+        0.011,
+        0.059
+      ],
+      "conf_a": 0.187,
+      "conf_b": 0.138
+    },
+    "helmet": {
+      "recall_a": 0.81,
+      "recall_b": 0.881,
+      "gain": 0.071,
+      "gain_ci95": [
+        0.012,
+        0.107
+      ],
+      "conf_a": 0.272,
+      "conf_b": 0.145
+    },
+    "vest": {
+      "recall_a": 0.894,
+      "recall_b": 0.935,
+      "gain": 0.041,
+      "gain_ci95": [
+        0.013,
+        0.073
+      ],
+      "conf_a": 0.111,
+      "conf_b": 0.056
+    },
+    "no_helmet": {
+      "recall_a": 0.648,
+      "recall_b": 0.693,
+      "gain": 0.045,
+      "gain_ci95": [
+        0.0,
+        0.095
+      ],
+      "conf_a": 0.237,
+      "conf_b": 0.39
+    },
+    "no_vest": {
+      "recall_a": 0.662,
+      "recall_b": 0.715,
+      "gain": 0.054,
+      "gain_ci95": [
+        0.013,
+        0.111
+      ],
+      "conf_a": 0.151,
+      "conf_b": 0.317
+    }
+  }
+}

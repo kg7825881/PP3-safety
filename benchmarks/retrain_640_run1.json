@@ -1,0 +1,30 @@
+{
+  "tag": "retrain_640_run1",
+  "created": "2026-11-25T06:33:38+00:00",
+  "environment": {
+    "machine": "arm64",
+    "processor": "arm",
+    "macos": "27.2.1",
+    "python": "3.12.16",
+    "torch": "2.15.0",
+    "ultralytics": "8.4.216"
+  },
+  "results": [
+    {
+      "weights": "weights/ppe_yolo26n.pt",
+      "device": "mps",
+      "image_size": 640,
+      "runs": 300,
+      "mean_ms": 10.38,
+      "p50_ms": 9.99,
+      "p95_ms": 10.22,
+      "p99_ms": 10.35,
+      "max_ms": 113.91,
+      "fps": 96.4,
+      "preprocess_ms": 0.37,
+      "inference_ms": 3.74,
+      "postprocess_ms": 6.27,
+      "detections_per_frame": 11.0
+    }
+  ]
+}

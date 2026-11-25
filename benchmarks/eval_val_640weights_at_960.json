@@ -1,0 +1,43 @@
+{
+  "weights": "weights/ppe_yolo26n.pt",
+  "split": "val",
+  "image_size": 960,
+  "overall": {
+    "precision": 0.927,
+    "recall": 0.811,
+    "map50": 0.867,
+    "map50_95": 0.63
+  },
+  "per_class": {
+    "person": {
+      "precision": 0.951,
+      "recall": 0.923,
+      "map50": 0.96,
+      "map50_95": 0.763
+    },
+    "helmet": {
+      "precision": 0.948,
+      "recall": 0.864,
+      "map50": 0.911,
+      "map50_95": 0.72
+    },
+    "vest": {
+      "precision": 0.966,
+      "recall": 0.935,
+      "map50": 0.948,
+      "map50_95": 0.74
+    },
+    "no_helmet": {
+      "precision": 0.903,
+      "recall": 0.665,
+      "map50": 0.75,
+      "map50_95": 0.461
+    },
+    "no_vest": {
+      "precision": 0.869,
+      "recall": 0.666,
+      "map50": 0.766,
+      "map50_95": 0.469
+    }
+  }
+}
