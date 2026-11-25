@@ -1,0 +1,19 @@
+# PPE Guard - PPE model configuration.
+# Every key is optional; missing keys use the defaults in src/ppe_guard/config.py.
+
+model:
+  weights: weights/ppe_yolo26n.pt  # fine-tuned; see docs/02-training.md
+  device: auto             # auto -> mps on Apple Silicon, else cpu
+  image_size: 640
+  conf_threshold: 0.25     # chosen on validation
+  iou_threshold: 0.5
+  classes: null            # all five PPE classes
+  half: false
+
+source:
+  uri: "0"                 # webcam; or a path like data/videos/site.mp4, or rtsp://...
+  max_frames: null
+
+output:
+  display: true
+  save_path: null
