@@ -46,20 +46,21 @@ uv pip install -e ".[dev]"
 
 Official model weights download automatically into `weights/` on first use.
 
-## PPE model results (YOLO26n, 640 px, held-out test set of 120 images)
+## PPE model results (YOLO26n, 960 px, held-out test set of 120 images)
 
 | Class | Precision | Recall | mAP50 |
 |---|---|---|---|
-| all | 0.927 | 0.829 | 0.888 |
-| person | 0.978 | 0.955 | 0.975 |
-| helmet | 0.954 | 0.821 | 0.926 |
-| vest | 0.983 | 0.919 | 0.969 |
-| no_helmet | 0.808 | 0.632 | 0.716 |
-| no_vest | 0.911 | 0.819 | 0.855 |
+| all | 0.949 | 0.891 | 0.930 |
+| person | 0.983 | 0.975 | 0.984 |
+| helmet | 0.949 | 0.890 | 0.939 |
+| vest | 0.973 | 0.956 | 0.978 |
+| no_helmet | 0.921 | 0.735 | 0.837 |
+| no_vest | 0.918 | 0.898 | 0.913 |
 
-Validation mAP50 is 0.831. Known limits: small violations are often missed, the test set is
-small, and the dataset mixes real and generated images, so real-site accuracy is unproven.
-Details: [docs/02-training.md](docs/02-training.md).
+Validation mAP50 is 0.875. Moving from 640 to 960 px raised test mAP50 from 0.888 to 0.930.
+Model latency on the M3 GPU went from 10.4 to 16.1 ms. Known limits: small violations are still
+often missed, the test set is small, and the dataset mixes real and generated images, so
+real-site accuracy is unproven. Details: [docs/02-training.md](docs/02-training.md).
 
 ## Latency results (Day 1 baseline, MacBook Air M3, 16 GB)
 
